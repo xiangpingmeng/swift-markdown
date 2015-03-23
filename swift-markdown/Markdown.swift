@@ -42,20 +42,49 @@ class Markdown {
             
             var lines:Array<String> = doc.componentsSeparatedByString("\n")
             
+            var lineCache:String = ""
+            
             for line:String in lines {
                 
                 
-                if line == "---" || line == "***" || line == "___" {
+                var curLine = line;
+                
+                if(curLine.leadingSpaces() < 4){
+
+                    curLine = curLine.trimFromStart(" ");
                     
-                    var hr:HorizontalRule = HorizontalRule(content: line)
+                }
+                
+                if(lineCache.utf16Count > 0){
+                    lineCache += "\n";
+                }
+                
+                //try to parse <hr />
+                var filtedLine = curLine.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.allZeros, range: nil)
+                
+                let hrChar1:Character = "-"
+                let hrChar2:Character = "*"
+                let hrChar3:Character = "_"
+                
+                if (filtedLine.countOfChar(hrChar1) >= 3 && filtedLine.countOfChar(hrChar1) == countElements(filtedLine)) ||
+                    (filtedLine.countOfChar(hrChar2) >= 3 && filtedLine.countOfChar(hrChar2) == countElements(filtedLine)) ||
+                    (filtedLine.countOfChar(hrChar3) >= 3 && filtedLine.countOfChar(hrChar3) == countElements(filtedLine)) {
+                    
+                    var hr:HorizontalRule = HorizontalRule(content: curLine)
                     self.root!.append(hr)
 
                 }else{
                     
-                    var p:Paragraphs = Paragraphs(content: line)
-                    self.root!.append(p)
+                    lineCache += curLine;
                     
                 }
+                
+            }
+            
+            if(lineCache.utf16Count > 0){
+                
+                var p:Paragraphs = Paragraphs(content: lineCache)
+                self.root!.append(p)
                 
             }
             

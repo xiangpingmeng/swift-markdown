@@ -2,7 +2,6 @@
 //  String+Extension.swift
 //  swift-markdown
 //
-//  Created by mengxiangping on 3/3/15.
 //  Copyright (c) 2015 swiftcafe. All rights reserved.
 //
 
@@ -26,5 +25,46 @@ extension String {
         
         return 0
     }
+    
+    func trimFromStart(pattern:String) -> String {
+
+        
+        var result:String = self;
+        
+        while let range:Range<String.Index> = result.rangeOfString(pattern) {
+
+            if(distance(result.startIndex, range.startIndex) == 0){
+            
+                result = result.substringFromIndex(range.endIndex)
+
+            }else{
+                return result;
+            }
+            
+        }
+        
+        return result;
+        
+    }
+    
+    func countOfChar(c:Character) -> Int {
+        
+        var count:Int = 0
+        
+        for char:Character in self {
+
+            if char == c {
+                
+                count++
+                
+            }
+            
+        }
+        
+        return count
+        
+    }
+    
+    
     
 }

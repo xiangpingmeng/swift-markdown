@@ -12,7 +12,7 @@ class Paragraphs : MarkdownNode,MarkdownNodeProtocol {
     
     override func toHTML() -> String {
         
-        return "<p>\(self.content)</p>"
+        return "<p>\(self.content!)</p>"
         
     }
     

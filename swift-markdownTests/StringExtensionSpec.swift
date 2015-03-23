@@ -24,6 +24,28 @@ class StringExtensionSpec: QuickSpec {
             
         }
         
+        
+        describe("trimFromStart"){
+            
+            it("normal") {
+                
+                expect("lloHe").to(equal("HelloHe".trimFromStart("He")));
+                
+            }
+            
+        }
+        
+        describe("countOfChars") {
+            
+            it("normal") {
+  
+                let c:Character = "l"
+                expect("lloooe".countOfChar(c)).to(equal(2))
+                
+            }
+            
+        }
+        
     }
     
 }
