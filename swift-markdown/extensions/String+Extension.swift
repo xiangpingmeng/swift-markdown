@@ -47,6 +47,28 @@ extension String {
         
     }
     
+    func trimFromEnd(pattern:String) -> String {
+        
+        var result:String = self;
+        
+        while let range:Range<String.Index> = result.rangeOfString(pattern, options: NSStringCompareOptions.BackwardsSearch) {
+            
+            if distance(result.endIndex, range.endIndex) == 0 {
+                
+                result = result.substringToIndex(range.startIndex)
+                
+            }else{
+                
+                return result
+                
+            }
+            
+        }
+        
+        return result
+        
+    }
+    
     func countOfChar(c:Character) -> Int {
         
         var count:Int = 0
@@ -56,6 +78,28 @@ extension String {
             if char == c {
                 
                 count++
+                
+            }
+            
+        }
+        
+        return count
+        
+    }
+    
+    func numberOfLeadingChar(c:Character) -> Int {
+        
+        var count:Int = 0
+        
+        for char:Character in self {
+            
+            if char == c {
+                
+                count++
+                
+            }else{
+                
+                return count
                 
             }
             

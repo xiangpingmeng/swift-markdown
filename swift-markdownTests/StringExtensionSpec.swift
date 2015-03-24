@@ -35,12 +35,33 @@ class StringExtensionSpec: QuickSpec {
             
         }
         
+        describe("trimFromEnd"){
+            
+            it("normal") {
+                
+                expect("HelloHe").to(equal("HelloHe###".trimFromEnd("#")));
+                
+            }
+            
+        }
+        
         describe("countOfChars") {
             
             it("normal") {
   
                 let c:Character = "l"
                 expect("lloooe".countOfChar(c)).to(equal(2))
+                
+            }
+            
+        }
+        
+        describe("numberOfLeadingChar") {
+            
+            it("normal"){
+                
+                let c:Character = "#"
+                expect("###test##".numberOfLeadingChar(c)).to(equal(3))
                 
             }
             

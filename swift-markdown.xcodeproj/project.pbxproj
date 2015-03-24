@@ -14,6 +14,9 @@
 		931011FF1AA3542F004D5A4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 931011FD1AA3542F004D5A4A /* Main.storyboard */; };
 		931012011AA3542F004D5A4A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 931012001AA3542F004D5A4A /* Images.xcassets */; };
 		931012041AA3542F004D5A4A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931012021AA3542F004D5A4A /* LaunchScreen.xib */; };
+		935C90021AC0EB7D00A7F89F /* LeafBlockATXHeadersSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935C90011AC0EB7D00A7F89F /* LeafBlockATXHeadersSpec.swift */; };
+		935C90041AC0ECB500A7F89F /* ATXHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935C90031AC0ECB500A7F89F /* ATXHeader.swift */; };
+		935C90051AC0ED4500A7F89F /* ATXHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935C90031AC0ECB500A7F89F /* ATXHeader.swift */; };
 		93765B651AA3558300BF327F /* Markdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93765B641AA3558300BF327F /* Markdown.swift */; };
 		93765B661AA3558300BF327F /* Markdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93765B641AA3558300BF327F /* Markdown.swift */; };
 		937BFFA21AA35F2A0024565F /* HorizontalRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937BFFA01AA35F2A0024565F /* HorizontalRule.swift */; };
@@ -52,6 +55,8 @@
 		931012031AA3542F004D5A4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		931012091AA3542F004D5A4A /* swift-markdownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "swift-markdownTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9310120E1AA3542F004D5A4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		935C90011AC0EB7D00A7F89F /* LeafBlockATXHeadersSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafBlockATXHeadersSpec.swift; sourceTree = "<group>"; };
+		935C90031AC0ECB500A7F89F /* ATXHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATXHeader.swift; sourceTree = "<group>"; };
 		93765B641AA3558300BF327F /* Markdown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Markdown.swift; sourceTree = "<group>"; };
 		937BFFA01AA35F2A0024565F /* HorizontalRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalRule.swift; sourceTree = "<group>"; };
 		937BFFA11AA35F2A0024565F /* MarkdownNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownNode.swift; sourceTree = "<group>"; };
@@ -119,13 +124,13 @@
 			children = (
 				937E4F491AA543CA00C2A608 /* extensions */,
 				937BFF9F1AA35F2A0024565F /* nodes */,
+				93765B641AA3558300BF327F /* Markdown.swift */,
 				931011F91AA3542F004D5A4A /* AppDelegate.swift */,
 				931011FB1AA3542F004D5A4A /* ViewController.swift */,
 				931011FD1AA3542F004D5A4A /* Main.storyboard */,
 				931012001AA3542F004D5A4A /* Images.xcassets */,
 				931012021AA3542F004D5A4A /* LaunchScreen.xib */,
 				931011F71AA3542F004D5A4A /* Supporting Files */,
-				93765B641AA3558300BF327F /* Markdown.swift */,
 			);
 			path = "swift-markdown";
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 				9310120D1AA3542F004D5A4A /* Supporting Files */,
 				937BFFA61AA3EB9A0024565F /* LeafBlockSpec.swift */,
 				937E4F4D1AA5448200C2A608 /* StringExtensionSpec.swift */,
+				935C90011AC0EB7D00A7F89F /* LeafBlockATXHeadersSpec.swift */,
 			);
 			path = "swift-markdownTests";
 			sourceTree = "<group>";
@@ -162,6 +168,7 @@
 				937BFFA01AA35F2A0024565F /* HorizontalRule.swift */,
 				937BFFA11AA35F2A0024565F /* MarkdownNode.swift */,
 				937E4F461AA53C3100C2A608 /* Paragraphs.swift */,
+				935C90031AC0ECB500A7F89F /* ATXHeader.swift */,
 			);
 			path = nodes;
 			sourceTree = "<group>";
@@ -382,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				935C90041AC0ECB500A7F89F /* ATXHeader.swift in Sources */,
 				931011FC1AA3542F004D5A4A /* ViewController.swift in Sources */,
 				937E4F4B1AA543D400C2A608 /* String+Extension.swift in Sources */,
 				937BFFA21AA35F2A0024565F /* HorizontalRule.swift in Sources */,
@@ -403,6 +411,8 @@
 				93765B661AA3558300BF327F /* Markdown.swift in Sources */,
 				937E4F4C1AA543D400C2A608 /* String+Extension.swift in Sources */,
 				937BFFA51AA35F2A0024565F /* MarkdownNode.swift in Sources */,
+				935C90021AC0EB7D00A7F89F /* LeafBlockATXHeadersSpec.swift in Sources */,
+				935C90051AC0ED4500A7F89F /* ATXHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,7 +19,7 @@ class LeafBlockSpec: QuickSpec {
 
     override func spec() {
         
-        describe("hr") {
+        describe("Horizonal Rule") {
             
             //example 4
             it("normal case") {
@@ -127,7 +127,23 @@ class LeafBlockSpec: QuickSpec {
                 
             }
             
-        }
+            it("Horizonal rules can interrupt paragraph") {
+                
+                //example 19
+                //Foo
+                //***
+                //bar
+                //should be
+                //<p>Foo</p>
+                //<hr />
+                //<p>bar</p>
+                
+                self.markdown = Markdown(document: "Foo\n***\nbar")
+                expect(self.markdown!.htmlString()).to(equal("<p>Foo</p>\n<hr />\n<p>bar</p>"))
+                
+            }
+            
+        }        
         
         
     }
