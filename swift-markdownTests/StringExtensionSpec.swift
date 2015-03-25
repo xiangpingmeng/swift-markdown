@@ -67,6 +67,20 @@ class StringExtensionSpec: QuickSpec {
             
         }
         
+        describe("numberOfLines"){
+            
+            it("normal"){
+                
+                var str = "aa\nbb\ncc"
+                expect(str.numberOfLines()).to(equal(3))
+                
+                str = "aa\n"
+                expect(str.numberOfLines()).to(equal(1))
+                
+            }
+            
+        }
+        
     }
     
 }

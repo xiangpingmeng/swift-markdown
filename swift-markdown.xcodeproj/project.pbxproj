@@ -29,6 +29,7 @@
 		937E4F4B1AA543D400C2A608 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937E4F4A1AA543D400C2A608 /* String+Extension.swift */; };
 		937E4F4C1AA543D400C2A608 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937E4F4A1AA543D400C2A608 /* String+Extension.swift */; };
 		937E4F4F1AA5448200C2A608 /* StringExtensionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937E4F4D1AA5448200C2A608 /* StringExtensionSpec.swift */; };
+		93981E281AC23DC3002E04F3 /* SetextHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93981E271AC23DC3002E04F3 /* SetextHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		937E4F461AA53C3100C2A608 /* Paragraphs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paragraphs.swift; sourceTree = "<group>"; };
 		937E4F4A1AA543D400C2A608 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		937E4F4D1AA5448200C2A608 /* StringExtensionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensionSpec.swift; sourceTree = "<group>"; };
+		93981E271AC23DC3002E04F3 /* SetextHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetextHeader.swift; sourceTree = "<group>"; };
 		DFBF0544A5AFC848C93B5059 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E704354B8333EBECBED48A7E /* Pods-swift-markdownTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-markdownTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-swift-markdownTests/Pods-swift-markdownTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,8 +150,8 @@
 			children = (
 				9310120D1AA3542F004D5A4A /* Supporting Files */,
 				937BFFA61AA3EB9A0024565F /* LeafBlockSpec.swift */,
-				937E4F4D1AA5448200C2A608 /* StringExtensionSpec.swift */,
 				935C90011AC0EB7D00A7F89F /* LeafBlockATXHeadersSpec.swift */,
+				937E4F4D1AA5448200C2A608 /* StringExtensionSpec.swift */,
 			);
 			path = "swift-markdownTests";
 			sourceTree = "<group>";
@@ -169,6 +171,7 @@
 				937BFFA11AA35F2A0024565F /* MarkdownNode.swift */,
 				937E4F461AA53C3100C2A608 /* Paragraphs.swift */,
 				935C90031AC0ECB500A7F89F /* ATXHeader.swift */,
+				93981E271AC23DC3002E04F3 /* SetextHeader.swift */,
 			);
 			path = nodes;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				937BFFA21AA35F2A0024565F /* HorizontalRule.swift in Sources */,
 				937E4F471AA53C3100C2A608 /* Paragraphs.swift in Sources */,
 				937BFFA41AA35F2A0024565F /* MarkdownNode.swift in Sources */,
+				93981E281AC23DC3002E04F3 /* SetextHeader.swift in Sources */,
 				93765B651AA3558300BF327F /* Markdown.swift in Sources */,
 				931011FA1AA3542F004D5A4A /* AppDelegate.swift in Sources */,
 			);

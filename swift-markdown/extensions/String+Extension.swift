@@ -53,7 +53,7 @@ extension String {
         
         while let range:Range<String.Index> = result.rangeOfString(pattern, options: NSStringCompareOptions.BackwardsSearch) {
             
-            if distance(result.endIndex, range.endIndex) == 0 {
+            if result.endIndex == range.endIndex {
                 
                 result = result.substringToIndex(range.startIndex)
                 
@@ -106,6 +106,12 @@ extension String {
         }
         
         return count
+        
+    }
+    
+    func numberOfLines() -> Int {
+
+        return self.componentsSeparatedByString("\n").count
         
     }
     

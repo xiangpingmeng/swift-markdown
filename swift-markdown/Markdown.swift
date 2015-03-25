@@ -103,6 +103,7 @@ class Markdown {
         
     }
     
+    
     private func buildAndCleanCache() {
         
         if(self.lineCache?.utf16Count > 0){
@@ -114,6 +115,13 @@ class Markdown {
         }
         
     }
+//    
+//    private func parseSetextHeader(curLine: String, lineCache:String) -> SetextHeader? {
+//        
+////        if lineCache.
+//        
+//        return nil
+//    }
     
     private func parseATXHeader(curLine: String) -> ATXHeader? {
         
@@ -122,13 +130,47 @@ class Markdown {
         var level = curLine.numberOfLeadingChar(keyChar);
         if level > 0 && level < 7 {
             
-            if curLine[advance(curLine.startIndex, level)] == " " {
+            //empty header
+            var line = curLine.trimFromStart("#")
+            
+            //protential risk
+            var testForEmpty = line.trimFromStart(" ")
+            testForEmpty = testForEmpty.trimFromEnd(" ")
+            testForEmpty = testForEmpty.trimFromEnd("#")
+            
+            if testForEmpty.isEmpty {
                 
-                var index:String.Index = advance(curLine.startIndex, level + 1)
-
-                var headerString = curLine.substringFromIndex(index)
-                headerString = headerString.trimFromStart(" ")
+                var headerNode:ATXHeader = ATXHeader(content: "", level: level)
+                return headerNode;
+                
+            }
+            
+            if line.hasPrefix(" ") {
+                
+                //remove leading # chars
+                var headerString = line.trimFromStart(" ")
                 headerString = headerString.trimFromEnd(" ")
+                
+                var headerLength = countElements(headerString)
+                headerString = headerString.trimFromEnd("#")
+                
+                //some # char has been trimmed
+                if countElements(headerString) < headerLength {
+                    
+                    if headerString[advance(headerString.endIndex, -1)] != " " {
+                        
+                        for var i = 0;i < headerLength - countElements(headerString);i++ {
+                            
+                            headerString += "#"
+                            
+                        }
+                        
+                    }else{
+                        headerString = headerString.trimFromEnd(" ")
+                    }
+                    
+                }
+                
                 var headerNode:ATXHeader = ATXHeader(content: headerString, level: level)
                 return headerNode;
 
