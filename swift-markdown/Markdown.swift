@@ -93,7 +93,7 @@ class Markdown {
                             lineCache? += "\n";
                         }
                         
-                        lineCache? += curLine;
+                        lineCache? += curLine.trimFromStart(" ");
                         
                     }
 
@@ -125,14 +125,17 @@ class Markdown {
     }
 //    
     private func parseSetextHeader(curLine: String, lineCache:String) -> SetextHeader? {
-
+        
+        if(curLine.leadingSpaces() >= 4){
+            return nil
+        }
         
         if lineCache.isEmpty == false && lineCache.numberOfLines() == 1 {
             
             var countOfEqual = curLine.countOfChar("=")
             if countOfEqual == countElements(curLine.trimFromStart(" ").trimFromEnd(" ")) {
                 
-                var setextHeader = SetextHeader(content: lineCache, type: SetextType.H1)
+                var setextHeader = SetextHeader(content: lineCache.trimFromEnd(" "), type: SetextType.H1)
                 return setextHeader
                 
             }
@@ -140,7 +143,7 @@ class Markdown {
             var countOfMinus = curLine.countOfChar("-")
             if countOfMinus > 1 && countOfMinus == countElements(curLine.trimFromStart(" ").trimFromEnd(" ")) {
                 
-                var setextHeader = SetextHeader(content: lineCache, type: SetextType.H2)
+                var setextHeader = SetextHeader(content: lineCache.trimFromEnd(" "), type: SetextType.H2)
                 return setextHeader
                 
             }
@@ -211,6 +214,10 @@ class Markdown {
     }
     
     private func parseHr(curLine: String) -> HorizontalRule? {
+        
+        if curLine.leadingSpaces() >= 4 {
+            return nil
+        }
         
         var filtedLine = curLine.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.allZeros, range: nil)
         
