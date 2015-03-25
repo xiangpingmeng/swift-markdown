@@ -30,11 +30,11 @@ class SetextHeader: MarkdownNode, MarkdownNodeProtocol {
         
         if self.type == SetextType.H1 {
             
-            return "<h1>\(self.content)</h1>"
+            return "<h1>\(self.content!)</h1>"
             
         }else if self.type == SetextType.H2 {
 
-            return "<h2>\(self.content)</h2>"
+            return "<h2>\(self.content!)</h2>"
             
         }else{
             

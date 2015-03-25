@@ -66,18 +66,26 @@ class Markdown {
                     
 
                     
-                    //try to parse <hr />
-                    if let hr = self.parseHr(curLine) {
 
-                        buildAndCleanCache()
-                        self.root?.append(hr)
 
-                        
-                    }else if let header = self.parseATXHeader(curLine) {
-                        
+                     
+                    if let header = self.parseATXHeader(curLine) {
+                     
+                        //try to parse <h?>content</h?>
                         buildAndCleanCache()
                         self.root?.append(header)
+                     
                         
+                    }else if let setextHeader = self.parseSetextHeader(curLine, lineCache: lineCache!) {
+                        
+                        //try to parse <h?>content<h?>
+                        lineCache = ""
+                        self.root?.append(setextHeader)
+                        
+                    } else if let hr = self.parseHr(curLine) {
+                        //try to parse <hr />
+                        buildAndCleanCache()
+                        self.root?.append(hr)
                     }
                     else {
                         
@@ -116,12 +124,31 @@ class Markdown {
         
     }
 //    
-//    private func parseSetextHeader(curLine: String, lineCache:String) -> SetextHeader? {
-//        
-////        if lineCache.
-//        
-//        return nil
-//    }
+    private func parseSetextHeader(curLine: String, lineCache:String) -> SetextHeader? {
+
+        
+        if lineCache.isEmpty == false && lineCache.numberOfLines() == 1 {
+            
+            var countOfEqual = curLine.countOfChar("=")
+            if countOfEqual == countElements(curLine.trimFromStart(" ").trimFromEnd(" ")) {
+                
+                var setextHeader = SetextHeader(content: lineCache, type: SetextType.H1)
+                return setextHeader
+                
+            }
+            
+            var countOfMinus = curLine.countOfChar("-")
+            if countOfMinus > 1 && countOfMinus == countElements(curLine.trimFromStart(" ").trimFromEnd(" ")) {
+                
+                var setextHeader = SetextHeader(content: lineCache, type: SetextType.H2)
+                return setextHeader
+                
+            }
+            
+        }
+        
+        return nil
+    }
     
     private func parseATXHeader(curLine: String) -> ATXHeader? {
         
