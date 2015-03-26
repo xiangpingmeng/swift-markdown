@@ -32,6 +32,9 @@
 		93981E281AC23DC3002E04F3 /* SetextHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93981E271AC23DC3002E04F3 /* SetextHeader.swift */; };
 		93981E2A1AC2E1AE002E04F3 /* LeafBlockSetextHeaderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93981E291AC2E1AE002E04F3 /* LeafBlockSetextHeaderSpec.swift */; };
 		93981E2B1AC2E323002E04F3 /* SetextHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93981E271AC23DC3002E04F3 /* SetextHeader.swift */; };
+		93981E2D1AC2F9D4002E04F3 /* IndentedCodeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93981E2C1AC2F9D4002E04F3 /* IndentedCodeBlock.swift */; };
+		93981E2E1AC2F9D4002E04F3 /* IndentedCodeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93981E2C1AC2F9D4002E04F3 /* IndentedCodeBlock.swift */; };
+		93981E311AC2FA67002E04F3 /* IndentedCodeBlockSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93981E2F1AC2FA67002E04F3 /* IndentedCodeBlockSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,8 @@
 		937E4F4D1AA5448200C2A608 /* StringExtensionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensionSpec.swift; sourceTree = "<group>"; };
 		93981E271AC23DC3002E04F3 /* SetextHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetextHeader.swift; sourceTree = "<group>"; };
 		93981E291AC2E1AE002E04F3 /* LeafBlockSetextHeaderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeafBlockSetextHeaderSpec.swift; sourceTree = "<group>"; };
+		93981E2C1AC2F9D4002E04F3 /* IndentedCodeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndentedCodeBlock.swift; sourceTree = "<group>"; };
+		93981E2F1AC2FA67002E04F3 /* IndentedCodeBlockSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndentedCodeBlockSpec.swift; sourceTree = "<group>"; };
 		DFBF0544A5AFC848C93B5059 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E704354B8333EBECBED48A7E /* Pods-swift-markdownTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-markdownTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-swift-markdownTests/Pods-swift-markdownTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,6 +161,7 @@
 				935C90011AC0EB7D00A7F89F /* LeafBlockATXHeadersSpec.swift */,
 				937E4F4D1AA5448200C2A608 /* StringExtensionSpec.swift */,
 				93981E291AC2E1AE002E04F3 /* LeafBlockSetextHeaderSpec.swift */,
+				93981E2F1AC2FA67002E04F3 /* IndentedCodeBlockSpec.swift */,
 			);
 			path = "swift-markdownTests";
 			sourceTree = "<group>";
@@ -176,6 +182,7 @@
 				937E4F461AA53C3100C2A608 /* Paragraphs.swift */,
 				935C90031AC0ECB500A7F89F /* ATXHeader.swift */,
 				93981E271AC23DC3002E04F3 /* SetextHeader.swift */,
+				93981E2C1AC2F9D4002E04F3 /* IndentedCodeBlock.swift */,
 			);
 			path = nodes;
 			sourceTree = "<group>";
@@ -401,6 +408,7 @@
 				937E4F4B1AA543D400C2A608 /* String+Extension.swift in Sources */,
 				937BFFA21AA35F2A0024565F /* HorizontalRule.swift in Sources */,
 				937E4F471AA53C3100C2A608 /* Paragraphs.swift in Sources */,
+				93981E2D1AC2F9D4002E04F3 /* IndentedCodeBlock.swift in Sources */,
 				937BFFA41AA35F2A0024565F /* MarkdownNode.swift in Sources */,
 				93981E281AC23DC3002E04F3 /* SetextHeader.swift in Sources */,
 				93765B651AA3558300BF327F /* Markdown.swift in Sources */,
@@ -419,9 +427,11 @@
 				937E4F481AA53C3100C2A608 /* Paragraphs.swift in Sources */,
 				93765B661AA3558300BF327F /* Markdown.swift in Sources */,
 				937E4F4C1AA543D400C2A608 /* String+Extension.swift in Sources */,
+				93981E2E1AC2F9D4002E04F3 /* IndentedCodeBlock.swift in Sources */,
 				937BFFA51AA35F2A0024565F /* MarkdownNode.swift in Sources */,
 				935C90021AC0EB7D00A7F89F /* LeafBlockATXHeadersSpec.swift in Sources */,
 				93981E2B1AC2E323002E04F3 /* SetextHeader.swift in Sources */,
+				93981E311AC2FA67002E04F3 /* IndentedCodeBlockSpec.swift in Sources */,
 				935C90051AC0ED4500A7F89F /* ATXHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

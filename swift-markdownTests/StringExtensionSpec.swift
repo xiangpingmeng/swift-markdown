@@ -20,6 +20,12 @@ class StringExtensionSpec: QuickSpec {
                 
                 expect("  aa".leadingSpaces()).to(equal(2))
                 
+                
+            }
+            it("all spaces"){
+                
+                expect("  ".leadingSpaces()).to(equal(2))
+                
             }
             
         }

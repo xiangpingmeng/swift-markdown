@@ -13,11 +13,20 @@ extension String {
         
         var leadingNumber = 0
         
-        for char:Character in self {
+        for (index,char) in enumerate(self) {
            
+            
             if char == " " {
                 leadingNumber += 1
+                
+                if index == countElements(self) - 1 {
+                    
+                    return leadingNumber
+
+                }
+                
             }else{
+                
                 return leadingNumber
             }
             

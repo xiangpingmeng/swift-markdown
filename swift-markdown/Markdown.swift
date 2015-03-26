@@ -30,8 +30,7 @@ class Markdown {
         }
         
         //check white space
-        
-        
+
         return false
         
     }
@@ -45,6 +44,7 @@ class Markdown {
             var lines:Array<String> = doc.componentsSeparatedByString("\n")
             
             lineCache = ""
+            var blockStart = false
             
             for line:String in lines {
                 
@@ -53,22 +53,52 @@ class Markdown {
                 
                 if(curLine == ""){
                     
-                    buildAndCleanCache()
+                    if blockStart == false {
+                        
+                        buildAndCleanCache()
+                        
+                    }else{
+                        lineCache? += "\n"
+                    }
                     
                 }else{
                     
                     
                     if(curLine.leadingSpaces() < 4){
                         
-                        curLine = curLine.trimFromStart(" ");
+                        if curLine.countOfChar(" ") == countElements(curLine) {
+                            
+                            lineCache? += "\n"
+                            continue
+                            
+                        }else{
+                        
+                            if blockStart == true {
+                                
+                                var indentedCodeBlock:IndentedCodeBlock = IndentedCodeBlock(content:lineCache!)
+                                self.root?.append(indentedCodeBlock)
+                                lineCache = ""
+                                
+                            }
+                            
+                            blockStart = false
+                            curLine = curLine.trimFromStart(" ");
+
+                        }
+                        
+                        
+                    }else{
+                        
+                        if countElements(lineCache!) == 0 || blockStart {
+                            
+                            blockStart = true
+                            lineCache? += curLine.substringFromIndex(advance(curLine.startIndex, 4)) + "\n"
+                            continue
+                            
+                        }
                         
                     }
                     
-
-                    
-
-
-                     
                     if let header = self.parseATXHeader(curLine) {
                      
                         //try to parse <h?>content</h?>
@@ -103,7 +133,20 @@ class Markdown {
                 
             }
             
-            buildAndCleanCache()
+            
+            if blockStart {
+                
+                var indentedCodeBlock:IndentedCodeBlock = IndentedCodeBlock(content:lineCache!)
+                self.root?.append(indentedCodeBlock)
+                lineCache = ""
+                
+            }else {
+
+                buildAndCleanCache()
+                
+            }
+            
+
             
         }
         
