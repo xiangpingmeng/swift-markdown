@@ -74,7 +74,7 @@ class Markdown {
                         //check fenced code block
                         var lineTrimmed = curLine.trimFromStart(" ").trimFromEnd(" ")
                         
-                        if lineTrimmed == "~~~" || lineTrimmed == "```" {
+                        if (lineTrimmed.allCharIs("~") || line.allCharIs("`")) && countElements(lineTrimmed) >= 3 {
                             	
                             if fencedBlockStart == false {
                                 
@@ -84,11 +84,18 @@ class Markdown {
                                 
                             }else {
                                 
-                                fencedBlockStart = false
-                                var fencedCodeBlock = FencedCodeBlock(content:lineCache!)
-                                self.root?.append(fencedCodeBlock)
-                                lineCache = ""
-                                continue
+                                //finish fenced code blick
+                                if lineTrimmed.hasPrefix(fencedIdentifier) {
+
+                                    fencedIdentifier = ""
+                                    fencedBlockStart = false
+                                    var fencedCodeBlock = FencedCodeBlock(content:lineCache!)
+                                    self.root?.append(fencedCodeBlock)
+                                    lineCache = ""
+                                    continue
+                                    
+                                }
+
                             }
                             
                         }
@@ -177,8 +184,13 @@ class Markdown {
                 
             }
             
-            
-            if blockStart {
+            if fencedBlockStart {
+                
+                var fencedCodeBlock:FencedCodeBlock = FencedCodeBlock(content: lineCache!)
+                self.root?.append(fencedCodeBlock)
+                lineCache = ""
+                
+            }else if blockStart {
                 
                 var indentedCodeBlock:IndentedCodeBlock = IndentedCodeBlock(content:lineCache!)
                 self.root?.append(indentedCodeBlock)

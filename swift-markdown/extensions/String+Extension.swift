@@ -124,6 +124,12 @@ extension String {
         
     }
     
+    func allCharIs(char: Character) -> Bool {
+        
+        return self.countOfChar(char) == countElements(self)
+        
+    }
+    
     
     
 }

@@ -40,5 +40,12 @@ class MarkdownNode : MarkdownNodeProtocol{
         return self.content!
     }
     
+    func encodeHTMLEntities(){
+
+        self.content = self.content?.stringByReplacingOccurrencesOfString("<", withString: "&lt;", options: NSStringCompareOptions.allZeros)
+        self.content = self.content?.stringByReplacingOccurrencesOfString(">", withString: "&gt;", options: NSStringCompareOptions.allZeros)
+        
+    }
+    
     
 }

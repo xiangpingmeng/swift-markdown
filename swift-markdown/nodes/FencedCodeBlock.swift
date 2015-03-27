@@ -12,7 +12,8 @@ class FencedCodeBlock : MarkdownNode, MarkdownNodeProtocol {
     
     override func toHTML() -> String {
         
-        return "<pre><code>\(self.content)</code></pre>"
+        self.encodeHTMLEntities()
+        return "<pre><code>\(self.content!)</code></pre>"
         
     }
     
