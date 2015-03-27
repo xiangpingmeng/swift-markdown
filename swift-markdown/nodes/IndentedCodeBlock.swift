@@ -12,7 +12,39 @@ class IndentedCodeBlock : MarkdownNode, MarkdownNodeProtocol {
     
     override func toHTML() -> String {
         
-        return "<pre><code>\(self.content!)</code></pre>"
+        var lines = self.content!.componentsSeparatedByString("\n");
+
+        
+        var notEmptyFounded = false
+
+        
+        var startIndex = lines.count - 1
+        
+        while startIndex >= 0 {
+            
+            if lines[lines.count - 1].trimFromEnd(" ").trimFromStart(" ").isEmpty {
+                
+                lines.removeAtIndex(lines.count - 1)
+                
+            }else{
+                
+                break
+                
+            }
+            
+            startIndex--
+            
+        }
+        
+        var result:String = ""
+        
+        for line in lines {
+            
+            result += line + "\n"
+            
+        }
+        
+        return "<pre><code>\(result)</code></pre>"
         
     }
     

@@ -87,6 +87,93 @@ class IndentedCodeBlockSpec: QuickSpec {
                 
             }
             
+            it("However, any non-block line with fewer than four leading spaces ends the code block immediately. So a paragraph may occur immediately after indented code"){
+                
+                //example 66
+                //    foo
+                //bar
+                //should be 
+                //<pre><code>foo
+                //</code></pre>
+                //<p>bar</p>
+                
+                var markdown = Markdown(document: "    foo\nbar")
+                expect(markdown.htmlString()).to(equal("<pre><code>foo\n</code></pre>\n<p>bar</p>"))
+                
+            }
+            
+            it("An indented code can occur immediately before and after other kinds of blocks"){
+                
+                //example 67
+                
+                //# Header
+                //    foo
+                //Header
+                //------
+                //    foo
+                //----
+                
+                //<h1>Header</h1>
+                //<pre><code>foo
+                //</code></pre>
+                //<h2>Header</h2>
+                //<pre><code>foo
+                //</code></pre>
+                //<hr />
+                
+                var markdown = Markdown(document: "# Header\n    foo\nHeader\n------\n    foo\n----")
+                expect(markdown.htmlString()).to(equal("<h1>Header</h1>\n<pre><code>foo\n</code></pre>\n<h2>Header</h2>\n<pre><code>foo\n</code></pre>\n<hr />"))
+                
+            }
+            
+            
+            it("The first line can be indented more than four spaces") {
+                
+                //example 68
+                
+                //        foo
+                //    bar
+                
+                //<pre><code>    foo
+                //bar
+                //</code></pre>
+                
+                var markdown = Markdown(document: "        foo\n    bar")
+                expect(markdown.htmlString()).to(equal("<pre><code>    foo\nbar\n</code></pre>"))
+                
+            }
+            
+            it("Blank lines preceding or following an indented code block are not included in it"){
+                
+                //example 69
+                
+                //
+                //____
+                //    foo
+                //____
+                
+                //<pre><code>foo
+                //</code></pre>
+                
+                var markdown = Markdown(document: "\n    \n    foo\n    \n")
+                expect(markdown.htmlString()).to(equal("<pre><code>foo\n</code></pre>"))
+                
+            }
+            
+            it("Trailing spaces are included in the code block's content") {
+                
+                //example 70
+                
+                //    foo   
+                
+                //<pre><code>foo__
+                //</code></pre>
+                
+                var markdown = Markdown(document: "    foo  ")
+                expect(markdown.htmlString()).to(equal("<pre><code>foo  \n</code></pre>"))
+                
+            }
+            
         }
         
     }

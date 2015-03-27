@@ -45,29 +45,63 @@ class Markdown {
             
             lineCache = ""
             var blockStart = false
-            
+
+            var fencedBlockStart = false
+            var fencedIdentifier = ""
+
             for line:String in lines {
                 
-                
-                var curLine = line;
+                var curLine = line
                 
                 if(curLine == ""){
                     
-                    if blockStart == false {
+                    if blockStart == false && fencedBlockStart == false {
                         
                         buildAndCleanCache()
                         
                     }else{
+                        
                         lineCache? += "\n"
+                        
                     }
                     
+                    continue
+                    
                 }else{
-                    
-                    
+
                     if(curLine.leadingSpaces() < 4){
+
+                        //check fenced code block
+                        var lineTrimmed = curLine.trimFromStart(" ").trimFromEnd(" ")
+                        
+                        if lineTrimmed == "~~~" || lineTrimmed == "```" {
+                            	
+                            if fencedBlockStart == false {
+                                
+                                fencedIdentifier = lineTrimmed
+                                fencedBlockStart = true
+                                continue
+                                
+                            }else {
+                                
+                                fencedBlockStart = false
+                                var fencedCodeBlock = FencedCodeBlock(content:lineCache!)
+                                self.root?.append(fencedCodeBlock)
+                                lineCache = ""
+                                continue
+                            }
+                            
+                        }
+                        
+                        if fencedBlockStart {
+                            
+                            lineCache? += curLine + "\n"
+                            continue
+                            
+                        }
+                        
                         
                         if curLine.countOfChar(" ") == countElements(curLine) {
-                            
                             lineCache? += "\n"
                             continue
                             
@@ -89,7 +123,17 @@ class Markdown {
                         
                     }else{
                         
-                        if countElements(lineCache!) == 0 || blockStart {
+                        //code block will ignore white space line
+                        if curLine.countOfChar(" ") == countElements(curLine) &&
+                            blockStart == false
+                        {
+                            
+                            continue;
+                            
+                        }
+                        
+                        if countElements(lineCache!) == 0 /** in paragraph **/
+                            || blockStart {
                             
                             blockStart = true
                             lineCache? += curLine.substringFromIndex(advance(curLine.startIndex, 4)) + "\n"
