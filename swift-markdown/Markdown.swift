@@ -48,6 +48,7 @@ class Markdown {
 
             var fencedBlockStart = false
             var fencedIdentifier = ""
+            var fencedIndents = 0
 
             for line:String in lines {
                 
@@ -69,26 +70,31 @@ class Markdown {
                     
                 }else{
 
-                    if(curLine.leadingSpaces() < 4){
+                    if curLine.leadingSpaces() < 4 || fencedBlockStart {
 
                         //check fenced code block
                         var lineTrimmed = curLine.trimFromStart(" ").trimFromEnd(" ")
                         
-                        if (lineTrimmed.allCharIs("~") || line.allCharIs("`")) && countElements(lineTrimmed) >= 3 {
+                        if (lineTrimmed.allCharIs("~") || lineTrimmed.allCharIs("`")) && countElements(lineTrimmed) >= 3 {
                             	
                             if fencedBlockStart == false {
                                 
+                                buildAndCleanCache()    // -> example 90
                                 fencedIdentifier = lineTrimmed
                                 fencedBlockStart = true
+                                fencedIndents = curLine.leadingSpaces()
                                 continue
                                 
                             }else {
                                 
                                 //finish fenced code blick
-                                if lineTrimmed.hasPrefix(fencedIdentifier) {
+                                if lineTrimmed.hasPrefix(fencedIdentifier) &&
+                                    curLine.leadingSpaces() < 4 // -> example 87
+                                {
 
                                     fencedIdentifier = ""
                                     fencedBlockStart = false
+                                    fencedIndents = 0
                                     var fencedCodeBlock = FencedCodeBlock(content:lineCache!)
                                     self.root?.append(fencedCodeBlock)
                                     lineCache = ""
@@ -102,13 +108,27 @@ class Markdown {
                         
                         if fencedBlockStart {
                             
-                            lineCache? += curLine + "\n"
+                            if fencedIndents > 0 {
+                                
+                                if curLine.leadingSpaces() >= fencedIndents {
+                                    lineCache? += curLine.substringFromIndex(advance(curLine.startIndex, fencedIndents)) + "\n"
+                                }else{
+                                    lineCache? += curLine.substringFromIndex(advance(curLine.startIndex, curLine.leadingSpaces())) + "\n"
+                                }
+
+                                
+                            }else{
+                                lineCache? += curLine + "\n"
+                            }
+
                             continue
                             
                         }
                         
                         
+                        //space line
                         if curLine.countOfChar(" ") == countElements(curLine) {
+
                             lineCache? += "\n"
                             continue
                             
@@ -358,9 +378,9 @@ class Markdown {
 
                 contents += "\(toHTML(item.element))"
                 if item.index < node.childs!.count - 1 {
-                    
+
                     contents += "\n"
-                    
+
                 }
             }
             

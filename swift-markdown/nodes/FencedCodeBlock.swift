@@ -10,10 +10,22 @@ import Foundation
 
 class FencedCodeBlock : MarkdownNode, MarkdownNodeProtocol {
     
+    var infoString:String?
+    
     override func toHTML() -> String {
         
         self.encodeHTMLEntities()
-        return "<pre><code>\(self.content!)</code></pre>"
+        
+        if infoString != nil {
+
+            return "<pre><code class=\"language-\(infoString)\">\(self.content!)</code></pre>"
+            
+        }else{
+
+            return "<pre><code>\(self.content!)</code></pre>"
+            
+        }
+
         
     }
     
